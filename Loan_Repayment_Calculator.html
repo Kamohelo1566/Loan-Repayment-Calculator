@@ -1,0 +1,75 @@
+<html> 
+<head> 
+<title>Loan Repayment Calculator</title> 
+</head> 
+
+<body> 
+<h1> Loan Repayment Calculator </h1>
+<b>Enter Loan Information:</b> 
+<br/> 
+
+<form id="loan-form"> 
+<label for="loan-amount">1) Amount of the loan (ZAR):</label> 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+<input type="number" id="loan-amount" required> 
+<br/> 
+<label for="interest-rate">2) Annual percentage rate of interest:</label> 
+&nbsp; 
+<input type="number" id="interest-rate" required> 
+<br/> 
+<label for="loan-term">3) Repayment period in years:</label> 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<input type="number" id="loan-term" required> 
+    <br/> 
+    <button type="submit">Calculate</button> 
+    <br/> 
+    <b>Loan Repayment Information: </b> 
+    <br/> 
+    4) Your monthly payment will be: 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <input type="number" id="monthly-payment"> 
+    <br/> 
+    5) Your total payment will be: 
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <input type="number" id="total-amount"> 
+    <br/> 
+    6) Your total interest payments will be: 
+    <input type="number" id="total-interest-payments"> 
+</form> 
+
+<script> 
+// loan repayment calculation 
+document.getElementById("loan-form").addEventListener("submit", function (e) { 
+    e.preventDefault(); 
+ 
+    // Extract user inputs 
+    const loanAmount = parseFloat(document.getElementById("loan-amount").value); 
+    const interestRate = parseFloat(document.getElementById("interest-rate").value) / 100; 
+    const loanTerm = parseFloat(document.getElementById("loan-term").value); 
+ 
+    // Calculate monthly interest rate and number of payments 
+    const monthlyInterestRate = interestRate / 12; 
+    const numberOfPayments = loanTerm * 12; 
+ 
+    // Calculate monthly payment using the formula 
+    const monthlyPayment = 
+        (loanAmount * monthlyInterestRate) / 
+        (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments)); 
+ 
+    //Calculate total payment and total interest payments 
+    const totalAmount = monthlyPayment * numberOfPayments; 
+    const totalInterestPayments = totalAmount - loanAmount; 
+ 
+    // Display the results in the input fields 
+    document.getElementById("monthly-payment").value = monthlyPayment.toFixed(2); 
+    document.getElementById("total-amount").value = totalAmount.toFixed(2); 
+	document.getElementById("total-interest-payments").value = totalInterestPayments.toFixed(2); 
+}); 
+
+</script> 
+</body> 
+</html>

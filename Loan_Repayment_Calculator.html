@@ -28,10 +28,12 @@
     <br/> 
     <b>Loan Repayment Information: </b> 
     <br/> 
+	
     4) Your monthly payment will be: 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
     <input type="number" id="monthly-payment"> 
     <br/> 
+	
     5) Your total payment will be: 
     
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -56,9 +58,7 @@ document.getElementById("loan-form").addEventListener("submit", function (e) {
     const numberOfPayments = loanTerm * 12; 
  
     // Calculate monthly payment using the formula 
-    const monthlyPayment = 
-        (loanAmount * monthlyInterestRate) / 
-        (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments)); 
+    const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments)); 
  
     //Calculate total payment and total interest payments 
     const totalAmount = monthlyPayment * numberOfPayments; 
@@ -67,7 +67,7 @@ document.getElementById("loan-form").addEventListener("submit", function (e) {
     // Display the results in the input fields 
     document.getElementById("monthly-payment").value = monthlyPayment.toFixed(2); 
     document.getElementById("total-amount").value = totalAmount.toFixed(2); 
-	document.getElementById("total-interest-payments").value = totalInterestPayments.toFixed(2); 
+    document.getElementById("total-interest-payments").value = totalInterestPayments.toFixed(2); 
 }); 
 
 </script> 
